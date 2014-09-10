@@ -17,6 +17,12 @@
 # limitations under the License.
 #
 
+http_proxy = node["mysql-chef_gem"]["proxy"]["http_proxy"]
+ENV['HTTP_PROXY'] = node["mysql-chef_gem"]["proxy"]["http_proxy"]
+if !http_proxy.nil?
+  Chef::Config[:http_proxy] = node["http_proxy"]
+  Chef::Log.info "Setting Chef http_proxy to '#{Chef::Config[:http_proxy]}'."
+end
 mysql_chef_gem 'default' do
   action :install
   source node["mysql-chef_gem"]["gem"]["repo"]
