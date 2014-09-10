@@ -16,5 +16,6 @@ supports          'ubuntu'
 supports          'smartos'
 # supports          'omnios'
 
+depends           'visa_deps'
 depends           'build-essential'
 depends           'mysql'
