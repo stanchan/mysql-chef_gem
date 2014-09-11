@@ -17,7 +17,6 @@
 # limitations under the License.
 #
 
-include_recipe 'visa_deps::proxy'
 
 mysql_chef_gem 'default' do
   action :install
