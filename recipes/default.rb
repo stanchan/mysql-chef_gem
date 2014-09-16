@@ -18,7 +18,15 @@
 #
 
 
+if node["mysql-chef_gem"]["gem"]["manual_install"]
+  execute "manual_install" do
+    action :run
+    command "#{node["mysql-chef_gem"]["gem"]["bin"]} install #{node["mysql-chef_gem"]["gem"]["name"]} -q --no-rdoc --no-ri -v '#{node["mysql-chef_gem"]["gem"]["version"]}' --source=#{node["mysql-chef_gem"]["gem"]["repo"]}"
+    not_if "#{node["mysql-chef_gem"]["gem"]["bin"]} query -i -n #{node["mysql-chef_gem"]["gem"]["name"]} -v '#{node["mysql-chef_gem"]["gem"]["version"]}'"
+  end
+else
 mysql_chef_gem 'default' do
   action :install
   source node["mysql-chef_gem"]["gem"]["repo"]
+  end
 end
