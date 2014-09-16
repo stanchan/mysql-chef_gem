@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-include_recipe "build-essential"
+include_recipe "build-essential::default"
 
 if node["mysql-chef_gem"]["gem"]["manual_install"]
   execute "manual_install" do
