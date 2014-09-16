@@ -17,6 +17,7 @@
 # limitations under the License.
 #
 
+include_recipe "build-essential"
 
 if node["mysql-chef_gem"]["gem"]["manual_install"]
   execute "manual_install" do
@@ -25,7 +26,7 @@ if node["mysql-chef_gem"]["gem"]["manual_install"]
     not_if "#{node["mysql-chef_gem"]["gem"]["bin"]} query -i -n #{node["mysql-chef_gem"]["gem"]["name"]} -v '#{node["mysql-chef_gem"]["gem"]["version"]}'"
   end
 else
-mysql_chef_gem 'default' do
+  mysql_chef_gem "default" do
   action :install
   source node["mysql-chef_gem"]["gem"]["repo"]
   end
